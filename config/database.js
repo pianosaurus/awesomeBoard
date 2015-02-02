@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://nodeBoardSite:foobar@localhost:27017/nodeBoard'
+    url: 'mongodb://awesomeBoard:foobar@localhost:27017/awesomeBoard'
 };
