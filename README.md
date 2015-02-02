@@ -1,6 +1,9 @@
 # awesomeBoard
 
+## Quick start
+
 For local development, do:
+
 1. Install Node.js.
 2. Install MongoDB (don't start it yet).
 3. Open /etc/mongodb.conf and set `journal=false`, `nojournal=true` and `smallfiles=true`.
