@@ -10,3 +10,7 @@ For local development, do:
 4. Start MongoDB and create a user `awesomeBoard`, password `foobar`, and give it readWrite-role to a database called `awesomeBoard`.
 5. Check out this project, go to its directory, and run `npm install`.
 6. Run `node server.js`.
+
+## What's next?
+
+* Use Angular.
