@@ -1,0 +1,39 @@
+<div class="ui page grid">
+	<div class="sixteen wide column">
+		<h1 class="ui header">
+			<i class="sign in icon"></i>
+			<div class="content">Login</div>
+		</h1>
+
+		<!-- Show any messages that come back with authentication. -->
+		<div class="ui error message" ng-show="message">
+			<p>{{message}}</p>
+		</div>
+
+		<!-- Login form -->
+		<form class="ui form">
+			<div class="two fields">
+				<div class="required field">
+					<label>Email</label>
+					<div class="ui icon input">
+						<input type="email" ng-model="email" required />
+						<i class="at icon"></i>
+					</div>
+				</div>
+				<div class="required field">
+					<label>Password</label>
+					<div class="ui icon input">
+						<input type="password" ng-model="password" required />
+						<i class="lock icon"></i>
+					</div>
+				</div>
+			</div>
+			<button type="submit" ng-click="login()" class="ui primary submit button">Login</button>
+		</form>
+
+		<div class="ui divider"></div>
+
+		<p>Need an account? <a ui-sref="signup">Signup</a>.</p>
+		<p>Or go <a ui-sref="home">home</a>.</p>
+	</div>
+</div>

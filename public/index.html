@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="awesomeBoardApp">
+<!--ng-controller="MainController">-->
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta charset="UTF-8" />
+	<base href="/" />
+
+	<title ng-bind="title"></title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="libs/semantic-ui/dist/semantic.css" />
+	<link rel="stylesheet" href="css/style.css" />
+
+	<!-- JS -->
+	<script src="libs/jquery/dist/jquery.js"></script>
+	<script src="libs/semantic-ui/dist/semantic.js"></script>
+	<script src="libs/angular/angular.js"></script>
+	<script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
+
+	<!-- ANGULAR CUSTOM -->
+	<script src="js/app.js"></script>
+	<script src="js/controllers/SignupCtrl.js"></script>
+	<script src="js/controllers/LoginCtrl.js"></script>
+</head>
+
+<body>
+	<!-- ANGULAR DYNAMIC CONTENT -->
+	<ui-view></ui-view>
+</body>
+
+</html>

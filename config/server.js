@@ -1,5 +1,5 @@
 module.exports = {
-    title: 'awesomeBoard',
-    listenPort: 8080,
-    sessionSecret: 'tartishlynoncandescentbrit'
+	title: 'awesomeBoard',
+	listenPort: 3000,
+	sessionSecret: 'tartishlynoncandescentbrit'
 };

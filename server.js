@@ -1,20 +1,20 @@
+'use strict';
 /////////////////////
 // Package imports //
 /////////////////////
 
-var express      = require('express');
-var session      = require('express-session');
+var express = require('express');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
+var bodyParser = require('body-parser');
 
-var mongoose     = require('mongoose');
-var passport     = require('passport');
-var flash        = require('connect-flash');
-var morgan       = require('morgan');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var morgan = require('morgan');
 
 // Configuration
-var configDB     = require('./config/database.js');
-var configServer = require('./config/server.js');
+var configDB = require('./config/database');
+var configServer = require('./config/server');
 
 ///////////
 // Setup //
@@ -27,20 +27,24 @@ var app = express();
 mongoose.connect(configDB.url);
 
 // Set up the express application.
-app.use(morgan('dev'));     // Console logging.
+app.use(morgan('dev')); // Console logging
 app.use(cookieParser());
-app.use(bodyParser());
-app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ // Parse application/x-www-form-urlencoded
+	extended: false
+}));
+app.use(bodyParser.json()); // Parse application/json
 
 // Login/session setup.
 app.use(session({
-    secret: configServer.sessionSecret
+	resave: false,
+	saveUninitialized: false,
+	secret: configServer.sessionSecret
 }));
 require('./app/passport')(app, passport);
-app.use(flash());
 
 // Routes.
-require('./app/routes.js')(app, passport, configServer);
+app.use(express.static(__dirname + '/public'));
+require('./app/routes')(app, passport, configServer);
 
 ////////////
 // Launch //
