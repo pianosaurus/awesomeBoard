@@ -5,15 +5,13 @@
 			<div class="content">Signup</div>
 		</h1>
 
-		<!-- show any messages that come back with authentication -->
+		<!-- Show any messages that come back with authentication. -->
 		<div class="ui error message" ng-show="message">
-			<p>
-				{{message}}
-			</p>
+			<p>{{message}}</p>
 		</div>
 
-		<!-- LOGIN FORM -->
-		<form novalidate class="ui form" ng-submit="signup()">
+		<!-- Signup form -->
+		<form class="ui form" ng-submit="signup()">
 			<div class="two fields">
 				<div class="required field">
 					<label>Email</label>
@@ -35,8 +33,7 @@
 
 		<div class="ui divider"></div>
 
-		<p>Already have an account? <a href="/login">Login</a>
-		</p>
-		<p>Or go <a href="/">home</a>.</p>
+		<p>Already have an account? <a ui-sref="login">Login</a>.</p>
+		<p>Or go <a ui-sref="home">home</a>.</p>
 	</div>
 </div>

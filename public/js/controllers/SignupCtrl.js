@@ -1,9 +1,11 @@
-angular.module('SignupCtrl', []).controller('SignupController', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
+angular.module('awesomeBoardApp').controller('SignupController', ['$scope', '$rootScope', '$injector', function ($scope, $rootScope, $injector) {
 	'use strict';
 
 	// Register the signup() function
 	$scope.signup = function () {
-		console.log('Signup');
+		var $state = $injector.get('$state');
+		var $http = $injector.get('$http');
+
 		$http.post('/signup', {
 				email: $scope.email,
 				password: $scope.password,
@@ -15,12 +17,12 @@ angular.module('SignupCtrl', []).controller('SignupController', ['$scope', '$roo
 					email: $scope.email,
 					password: $scope.password
 				};
-				$location.url('/profile');
+				$state.go('profile');
 			})
-			.error(function (data) {
+			.error(function (message) {
 				// Error: authentication failed
-				$rootScope.message = data;
-				$location.url('/signup');
+				$rootScope.message = message;
+				$state.go('signup');
 			});
 	};
 }]);
