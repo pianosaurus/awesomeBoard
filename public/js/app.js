@@ -1,4 +1,4 @@
-var app = angular.module('awesomeBoardApp', ['ui.router']);
+var app = angular.module('awesomeBoardApp', ['ui.router', 'LoginCtrl', 'SignupCtrl']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 	'use strict';
