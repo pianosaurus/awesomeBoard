@@ -1,4 +1,4 @@
-angular.module('awesomeBoardApp').controller('LoginController', ['$scope', '$rootScope', '$injector', function ($scope, $rootScope, $injector) {
+angular.module('LoginCtrl', []).controller('LoginController', ['$scope', '$rootScope', '$injector', function ($scope, $rootScope, $injector) {
 	'use strict';
 
 	// Register the login() function
