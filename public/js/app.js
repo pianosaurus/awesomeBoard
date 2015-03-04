@@ -1,4 +1,4 @@
-var app = angular.module('awesomeBoardApp', ['ui.router']);
+var app = angular.module('awesomeBoardApp', ['ui.router', 'LoginCtrl', 'SignupCtrl', 'ProfileCtrl']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 	'use strict';
@@ -58,6 +58,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 		.state('profile', { // Profile page
 			url: '/profile',
 			templateUrl: 'views/profile.html',
+			controller: 'ProfileController',
 			resolve: { // Only show if logged in.
 				loggedin: checkLoggedin
 			}
@@ -77,7 +78,6 @@ app.run(['$rootScope', '$injector', function ($rootScope, $injector) {
 	$rootScope.logout = function () {
 		var $state = $injector.get('$state');
 		var $http = $injector.get('$http');
-		$rootScope.message = 'Logged out.';
 		$http.post('/logout');
 		$state.go('home');
 	};

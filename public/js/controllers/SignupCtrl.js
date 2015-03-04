@@ -1,4 +1,4 @@
-angular.module('awesomeBoardApp').controller('SignupController', ['$scope', '$rootScope', '$injector', function ($scope, $rootScope, $injector) {
+angular.module('SignupCtrl', []).controller('SignupController', ['$scope', '$rootScope', '$injector', function ($scope, $rootScope, $injector) {
 	'use strict';
 
 	// Register the signup() function
