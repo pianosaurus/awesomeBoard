@@ -7,6 +7,7 @@ var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var compression = require('compression')
 
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -22,6 +23,9 @@ var configServer = require('./config/server');
 
 // Initialise server and set port.
 var app = express();
+
+// Compress all requests.
+app.use(compression())
 
 // Connect to MongoDB.
 mongoose.connect(configDB.url);
