@@ -27,6 +27,7 @@
 		"expect": true,
 		"browser": true,
 		"element": true,
-		"by": true
+		"by": true,
+		"paper": true
 	}
 }

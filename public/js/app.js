@@ -1,4 +1,4 @@
-var app = angular.module('awesomeBoardApp', ['ui.router', 'LoginCtrl', 'SignupCtrl', 'ProfileCtrl']);
+var app = angular.module('awesomeBoardApp', ['ui.router', 'LoginCtrl', 'SignupCtrl', 'ProfileCtrl', 'DemoCtrl']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 	'use strict';
@@ -43,7 +43,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 	// Set up states and routes.
 	$stateProvider.state('home', { // Home page
 			url: '/',
-			templateUrl: 'views/home.html',
+			templateUrl: 'views/home.html'
 		})
 		.state('signup', { // Signup form
 			url: '/signup',
@@ -62,6 +62,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 			resolve: { // Only show if logged in.
 				loggedin: checkLoggedin
 			}
+		})
+		.state('demo', { // Demo page
+			url: '/games/demo',
+			templateUrl: 'views/games/demo.html',
+			controller: 'DemoController'
 		});
 
 	$urlRouterProvider.otherwise('/'); // For any unmatched url, redirect to home.
