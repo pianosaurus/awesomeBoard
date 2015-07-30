@@ -1,4 +1,4 @@
-var app = angular.module('awesomeBoardApp', ['ui.router', 'LoginCtrl', 'SignupCtrl', 'ProfileCtrl', 'DemoCtrl']);
+var app = angular.module('awesomeBoardApp', ['ui.router', 'btford.socket-io', 'LoginCtrl', 'SignupCtrl', 'ProfileCtrl', 'DemoCtrl']);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 	'use strict';
@@ -73,6 +73,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
 
 	$locationProvider.html5Mode(true); // Gets rid of ugly # in route.
 }]);
+
+app.factory('socket', function (socketFactory) {
+	'use strict';
+	return socketFactory();
+});
 
 app.run(['$rootScope', '$injector', function ($rootScope, $injector) {
 	'use strict';
