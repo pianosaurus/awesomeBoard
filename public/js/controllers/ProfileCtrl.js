@@ -2,10 +2,10 @@ angular.module('ProfileCtrl', []).controller('ProfileController', ['$rootScope',
 	'use strict';
 
 	$http.get('/loggedin')
-	.success(function (user) {
-		$rootScope.user = user.local;
-		$rootScope.message = '';
-	});
+		.success(function (user) {
+			$rootScope.user = user.local;
+			$rootScope.message = '';
+		});
 
 	socket.on('news', function (data) {
 		console.log(data);
