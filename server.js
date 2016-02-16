@@ -7,11 +7,12 @@ var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var compression = require('compression')
+var compression = require('compression');
 
 var mongoose = require('mongoose');
 var passport = require('passport');
 var morgan = require('morgan');
+var MongoStore = require('connect-mongo')(session);
 
 // Configuration
 var configDB = require('./config/database');
@@ -25,7 +26,7 @@ var configServer = require('./config/server');
 var app = express();
 
 // Compress all requests.
-app.use(compression())
+app.use(compression());
 
 // Connect to MongoDB.
 mongoose.connect(configDB.url);
@@ -42,7 +43,10 @@ app.use(bodyParser.json()); // Parse application/json
 app.use(session({
 	resave: false,
 	saveUninitialized: false,
-	secret: configServer.sessionSecret
+	secret: configServer.sessionSecret,
+	store: new MongoStore({
+		mongooseConnection: mongoose.connection
+	})
 }));
 require('./app/passport')(app, passport);
 
@@ -50,9 +54,14 @@ require('./app/passport')(app, passport);
 app.use(express.static(__dirname + '/public'));
 require('./app/routes')(app, passport, configServer);
 
+// Set up sockets and events.
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+require('./app/sockets')(io);
+
 ////////////
 // Launch //
 ////////////
 var port = configServer.listenPort;
-app.listen(port);
+server.listen(port); // Must use server.listen instead of app.listen for socket.IO to work.
 console.log(configServer.title + ' is listening on port ' + port + '.');

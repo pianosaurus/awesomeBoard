@@ -47,19 +47,20 @@ angular.module('DemoCtrl', []).controller('DemoController', ['$document', functi
 			fillColor: 'red'
 		};
 
+		// Snap token to chess board squares.
 		token.onMouseDrag = function (event) {
-			var delta = Math.min(paper.view.bounds.width, paper.view.bounds.height) / 10;
-
-			var x = Math.round((event.point.x - this.position.x) / delta) * delta + this.position.x;
-			var y = Math.round((event.point.y - this.position.y) / delta) * delta + this.position.y;
 			this.position = {
-				x: x,
-				y: y
+				x: Math.max(1.5, Math.min(Math.floor(event.point.x) + 0.5, 8.5)),
+				y: Math.max(1.5, Math.min(Math.floor(event.point.y) + 0.5, 8.5))
 			};
 		};
 
+		// Zoom to fit if the browser window is resized.
 		paper.view.onResize = function () {
-			paper.project.activeLayer.fitBounds(paper.view.bounds, false);
+			var bounds = paper.view.viewSize;
+			var zoom = Math.min(bounds.width, bounds.height) / 10;
+			paper.view.setZoom(zoom);
+			paper.view.setCenter(5, 5);
 		};
 		paper.view.onResize();
 

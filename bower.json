@@ -5,6 +5,7 @@
 		"angular": "latest",
 		"angular-ui-router": "latest",
 		"semantic-ui": "latest",
-		"paper": "latest"
+		"paper": "latest",
+		"angular-socket-io": "latest"
 	}
 }
